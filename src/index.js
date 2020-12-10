@@ -1,11 +1,35 @@
 import "./styles/index.scss";
+import { dataRow } from './assets/dataHelper.js';
 
 
 d3.select("body").append("div").attr("id", "year-slider");
 d3.select("body").append("div").attr("id", "gender-option");
 d3.select("body").append("div").attr("id", "country-option");
 
+let selectedCountry;
+
 drawGraph();
+
+//source https://data.worldbank.org/indicator/SP.DYN.LE00.IN
+//life expectancy at birth, by country
+d3.csv("./src/assets/API_SP.DYN.LE00.IN_DS2_en_csv_v2_1740384.csv").then(data => {
+  let dataObj = {};
+  data.map(d=>{
+      dataObj[d['Country Name']] = dataRow(d);
+  });
+  
+  const countryList = d3.select("#country-list");
+
+  countryList.selectAll('option')
+    .data(Object.keys(dataObj))
+    .enter()
+      .append("option")
+      .attr("value", d => d)
+      .text(d => d);
+
+
+});
+
 
 function drawGraph(){
   const height = 1000;
