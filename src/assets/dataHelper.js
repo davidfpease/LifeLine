@@ -1,5 +1,5 @@
 export const dataRow = d => {
-  debugger;
+  
   return {
     CountryName: d["Country Name"],
     1960: +d['1960'],

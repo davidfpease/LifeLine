@@ -1,14 +1,25 @@
 import "./styles/index.scss";
 import { dataRow } from './assets/dataHelper.js';
+import { addSliders } from './assets/addSliders.js';
+import { calculateExpectancy } from './scripts/calculateExpectancy.js';
 
 
 d3.select("body").append("div").attr("id", "year-slider");
+d3.select("body").append("div").attr("id", "month-slider");
 d3.select("body").append("div").attr("id", "gender-option");
 d3.select("body").append("div").attr("id", "country-option");
 
 let selectedCountry;
 
 drawGraph();
+addSliders();
+
+document.querySelector("#month-display").addEventListener('onchange', ()=>{
+
+  calculateExpectancy();
+
+});
+
 
 //source https://data.worldbank.org/indicator/SP.DYN.LE00.IN
 //life expectancy at birth, by country
@@ -26,8 +37,6 @@ d3.csv("./src/assets/API_SP.DYN.LE00.IN_DS2_en_csv_v2_1740384.csv").then(data =>
       .append("option")
       .attr("value", d => d)
       .text(d => d);
-
-
 });
 
 
@@ -35,33 +44,7 @@ function drawGraph(){
   const height = 1000;
   const width = 500;
 
-  const currentYear = new Date().getFullYear();
-  const years = d3.range(0, currentYear-1900+1).map(d=> new Date(1900+d,0,1));
-  const scale = d3.scaleTime().domain([new Date(1900), new Date(currentYear)])
-                .range([0,300]);
-  //year slider
-  const yearSlider = d3.sliderLeft(scale)
-                      .min(d3.min(years))
-                      .max(d3.max(years))
-                      .step(1000*60*24*365)
-                      .width(300)
-                      .height(300)
-                      .tickFormat(d3.timeFormat('%Y'))
-                      //.tickValues(years)
-                      .default(new Date(1980, 0,1))
-                      .on('onchange', val => {
-                        d3.select('#year-display').text(d3.timeFormat('%Y')(val))   
-                      });
-  
-  const gTime = d3.select('#year-slider')
-                  .append('svg')
-                  .attr('width', 100)
-                  .attr('height', 400)
-                  .append('g')
-                  .attr('transform', 'translate(60,30)');
-  
-  gTime.call(yearSlider);
-  d3.select('#year-display').text(d3.timeFormat('%Y')(yearSlider.value()));
+
 
   const lifeExpectancy = 3000;  //this will be a calculated value
   const past = "#5ac18e";
@@ -85,7 +68,7 @@ function drawGraph(){
   const x = d3.scaleBand()
             .range([0,width])
             .domain(d3.range(numCols));
-            debugger;
+        
 
   container.selectAll("square")
       .data(data)
