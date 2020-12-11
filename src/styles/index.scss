@@ -15,3 +15,25 @@ body {
 .country-list {
   height: 35px;
 }
+
+.pre {
+  fill: rgb(182, 250, 182);
+  stroke: black;
+}
+
+.post {
+  fill: rgb(238, 131, 140);
+  stroke: black;
+}
+
+.yahtzee {
+  fill: yellow;
+}
+
+.current-week {
+  fill: purple;
+}
+
+#life-chart {
+  transform: rotate(-90deg);
+}
