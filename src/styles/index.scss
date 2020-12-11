@@ -1,3 +1,13 @@
+@keyframes youAreHere {
+  0% {fill: white}
+  50% {fill: purple}
+  100% {fill: white}
+}
+@keyframes youDieHere {
+  0% {fill: white}
+  50% {fill: red}
+  100% {fill: white}
+}
 
 
 body {
@@ -27,13 +37,33 @@ body {
 }
 
 .yahtzee {
-  fill: yellow;
+  fill: red;
+  stroke: black;
+  animation-name: youDieHere;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+
 }
 
-.current-week {
-  fill: purple;
+.lived.pre {
+  fill:lightyellow;
+}
+
+rect:hover {
+  width: 10px;
+  z-index: 40;
+  height: 10px;
+  transform: translate(-2px, -2px);
 }
 
 #life-chart {
   transform: rotate(-90deg);
+}
+
+
+.current-week {
+  fill: purple;
+  animation-name: youAreHere;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }

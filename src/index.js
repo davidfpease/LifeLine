@@ -16,9 +16,16 @@ let lifeExpectancy = 2743;  //this will be a calculated value
 drawGraph();
 addSliders();
 
-document.getElementById("country-list").addEventListener('change', ()=>calculateExpectancy());
-document.getElementById("country-list").addEventListener('change', ()=>calculateExpectancy());
+const weekHover = document.getElementById("week-hover");
 
+document.getElementById("country-list").addEventListener('change', ()=>calculateExpectancy());
+document.querySelectorAll('rect').forEach(r => {
+  r.addEventListener('mouseover', (e)=>{
+    //console.log(e.currentTarget.id);
+    weekHover.innerHTML = `Week #: ${e.currentTarget.id}`;
+    
+  });
+})
 
 //source https://data.worldbank.org/indicator/SP.DYN.LE00.IN
 //life expectancy at birth, by country
@@ -35,17 +42,23 @@ d3.csv("./src/assets/API_SP.DYN.LE00.IN_DS2_en_csv_v2_1740384.csv").then(data =>
     .enter()
       .append("option")
       .attr("value", d => d)
+      .attr("selected", d => {
+        if (d === "United States"){
+          return "selected";
+        };
+      })
       .text(d => d);
+
+      
+  countryList.select(d=>{
+  });  
 });
+
 
 
 function drawGraph(){
   const height = 1000;
   const width = 500;
-
-
-
-  const past = "#5ac18e";
 
   const svg = d3.select("#life-chart").append("svg")//.attr("viewBox", `0, 0, ${width/2}, ${height/2}`);
                 .attr("width", width)
@@ -55,7 +68,7 @@ function drawGraph(){
                     .attr("transform", "translate(2,2)");
 
   const numRows = 100;
-  const numCols = 56;
+  const numCols = 52;
 
   const data = d3.range(numCols*numRows);
 
@@ -90,28 +103,61 @@ function drawGraph(){
 const calculateExpectancy = () => {
   const birthYear = document.getElementById("year-display").innerHTML;
   const birthMonth = document.getElementById("month-display").innerHTML;
+  const birthDay = document.getElementById("day-display").innerHTML;
+  const weeksLived = document.getElementById("weeks-lived");
+  const weeksRemaining = document.getElementById("weeks-remaining");
+
   const country = document.getElementById("country-list").value;
   const monthsArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
   //get data from csv
   const lifeData = dataObj[country][birthYear];
-  const currentWeek = 
+   
 
   lifeExpectancy = Math.floor(lifeData*52.14); //weeks per year
-  //drawGraph();
-//  debugger;
+  //calculate current week
+  const today = new Date();
+  const bday = new Date(+birthYear, monthsArray.indexOf(birthMonth),+birthDay);
+    
+  const currentWeek = Math.floor(((today-bday)/(1000*60*60*24*365))*52.14);
+  let lived = (currentWeek - 1).toLocaleString('en', { useGrouping: true });
+  let remaining = (lifeExpectancy - currentWeek).toLocaleString('en', { useGrouping: true })
+  weeksLived.innerHTML = `Weeks Lived: ${lived}`;
+  weeksRemaining.innerHTML = `Weeks Remaining: ${remaining}`;
+
+
   d3.selectAll('rect')
     .attr('class', (d,i)=>{
-      debugger;
+      // debugger;
+      let className = [];
+      if (d === currentWeek){
+        className.push('current-week'); 
+      };
+      if (d<currentWeek) {
+        className.push("lived");
+      };
       if (d< lifeExpectancy){
-        return "pre";
-      } else if (d > lifeExpectancy){
-        return "post";
-      } else if (d === lifeExpectancy){
-        return "yahtzee";
-      }
+        className.push("pre");
+      };
+      if (d > lifeExpectancy){
+        className.push("post");
+      };
+      if (d === lifeExpectancy){
+        className.push("yahtzee");
+      };
+      return className.join(' ');
+
     })
-
-
-
 }
+
+
+
+//event listeners for sliders
+const config = { attributes: true,
+                childList: true,
+                characterData: true,
+                subtree: true, };
+const observer = new MutationObserver(()=>calculateExpectancy());
+observer.observe(document.getElementById("year-display"), config);
+observer.observe(document.getElementById("month-display"), config);
+observer.observe(document.getElementById("day-display"), config);

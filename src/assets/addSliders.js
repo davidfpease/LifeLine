@@ -31,7 +31,7 @@ export const addSliders = ()=>{
   d3.select('#year-display').text(d3.timeFormat('%Y')(yearSlider.value()));
 
   //months slider
-  const months = d3.range(1, 13).map(d => new Date(1900, d, 1));
+  const months = d3.range(0, 12).map(d => new Date(1900, d, 1));
   const monthSlider = d3.sliderLeft()
     .min(d3.min(months))
     .max(d3.max(months))
