@@ -11,7 +11,7 @@ d3.select("body").append("div").attr("id", "gender-option");
 d3.select("body").append("div").attr("id", "country-option");
 
 let selectedCountry;
-let lifeExpectancy = 2743;  //this will be a calculated value
+let lifeExpectancy = 2743;  
 
 drawGraph();
 addSliders();
@@ -95,6 +95,34 @@ function drawGraph(){
       //.style("fill", "none")
       .attr("class", function(d){return d <= lifeExpectancy ? "pre" : "post"})
       //.style("stroke", "black");
+
+
+//add axes 
+
+let eNums = [];
+for (let i = 2; i <=100; i++){
+  i % 2 === 0 ? eNums.push(i) : null;
+}
+debugger;
+const yearsScale = d3.scaleLinear().domain([0,52]).range([0,500]);
+const yearsAxis = d3.axisBottom(yearsScale).ticks(50)
+      .tickFormat(d=> d === 0 ? "": d)
+      .tickValues(eNums);
+
+  d3.select("#year-ticks").append("svg")
+    .attr("width", height)
+    .attr("height", width)
+    .attr("class", "year-ticks")
+    .append("g")
+    .attr("transform", "translate(0,30)")
+    .attr("class", "year-scale")
+    .call(yearsAxis).call(g => {
+      g.select(".domain")
+      .remove();
+      g.selectAll('line').attr("transform", "translate(0, 18)")
+      .attr("class", "year-scale-line")
+      ;}
+    )
 }
 
 
