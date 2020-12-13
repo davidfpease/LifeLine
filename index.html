@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
 
 <head>
   <meta charset="UTF-8" />
@@ -14,18 +14,42 @@
 </head>
 
 <body>
-  <p id="year-display"></p>
-  <p id="month-display"></p>
-  <p id="day-display"></p>
-  <p id="week-hover"></p>
-  <p id="weeks-lived"></p>
-  <p id="weeks-remaining"></p>
-  <div  class="life-chart-container">
-    <div id="year-ticks"></div>
-    <div id="life-chart"></div>
+  <div class="weeks-lived-container">
+    <p id="weeks-lived"></p>
   </div>
-  <select id="country-list" class="country-list" ></select>
-  <canvas></canvas>
+  <div class="weeks-remaining-container">
+    <p id="weeks-remaining"></p>
+  </div>
+  <div class="country-list-container">
+    <select id="country-list" class="country-list" ></select>
+  </div>
+  <div class="date-display">
+    <div class="year-display-container">
+      <p id="year-display"></p>
+    </div>
+    <div class="month-display-container">
+      <p id="month-display"></p>
+    </div>
+    <div class="day-display-container">
+      <p id="day-display"></p>
+    </div>
+  </div>
+  <p>Select Your Birth Year, Month and Day:</p>
+  <div class="sliders">
+    <div id="year-slider"></div>
+    <div id="month-slider"></div>
+    <div id="day-slider"></div>
+    <div  class="life-chart-container">
+      <div class="week-hover-container">
+        <p>Week: <span id="week-hover"></span></p>
+      </div>
+      <p class="years">Years</p>
+      <div id="year-ticks"></div>
+      <p class="weeks">Week</p>
+      <div id="week-ticks"></div>
+      <div id="life-chart"></div>
+    </div>
+  </div>
   <script src="./dist/main.js"></script>
 </body>
 

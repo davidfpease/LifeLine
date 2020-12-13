@@ -1,14 +1,6 @@
 import "./styles/index.scss";
 import { dataRow } from './assets/dataHelper.js';
 import { addSliders } from './assets/addSliders.js';
-//import { calculateExpectancy } from './scripts/calculateExpectancy.js';
-
-
-d3.select("body").append("div").attr("id", "year-slider");
-d3.select("body").append("div").attr("id", "month-slider");
-d3.select("body").append("div").attr("id", "day-slider");
-d3.select("body").append("div").attr("id", "gender-option");
-d3.select("body").append("div").attr("id", "country-option");
 
 let selectedCountry;
 let lifeExpectancy = 2743;  
@@ -22,7 +14,7 @@ document.getElementById("country-list").addEventListener('change', ()=>calculate
 document.querySelectorAll('rect').forEach(r => {
   r.addEventListener('mouseover', (e)=>{
     //console.log(e.currentTarget.id);
-    weekHover.innerHTML = `Week #: ${e.currentTarget.id}`;
+    weekHover.innerHTML = e.currentTarget.id;
     
   });
 })
@@ -57,18 +49,18 @@ d3.csv("./src/assets/API_SP.DYN.LE00.IN_DS2_en_csv_v2_1740384.csv").then(data =>
 
 
 function drawGraph(){
-  const height = 1000;
-  const width = 500;
+  const height = 500;
+  const width = 1000;
 
-  const svg = d3.select("#life-chart").append("svg")//.attr("viewBox", `0, 0, ${width/2}, ${height/2}`);
+  const svg = d3.select("#life-chart").append("svg")
                 .attr("width", width)
                 .attr("height", height);
 
   const container = svg.append("g")
                     .attr("transform", "translate(2,2)");
 
-  const numRows = 100;
-  const numCols = 52;
+  const numRows = 52;
+  const numCols = 100;
 
   const data = d3.range(numCols*numRows);
 
@@ -87,42 +79,65 @@ function drawGraph(){
       .attr("id", function(d){return d})
       .attr("rx", 1)
       .attr("ry", 1)
-      .attr("x", function(d){return x(d%numCols);})
-      .attr("y", function(d){return y(Math.floor(d/numCols));})
+      .attr("x", function (d) { return x(Math.floor(d / numRows));})
+      .attr("y", function(d){return y(d%numRows);})
       .attr("width",6)
       .attr("height", 6)
       .style("stroke-width", .5)
-      //.style("fill", "none")
-      .attr("class", function(d){return d <= lifeExpectancy ? "pre" : "post"})
-      //.style("stroke", "black");
+      .attr("class", function(d){return d <= lifeExpectancy ? "pre" : "post"});
 
 
-//add axes 
 
-let eNums = [];
-for (let i = 2; i <=100; i++){
-  i % 2 === 0 ? eNums.push(i) : null;
-}
-debugger;
-const yearsScale = d3.scaleLinear().domain([0,52]).range([0,500]);
-const yearsAxis = d3.axisBottom(yearsScale).ticks(50)
-      .tickFormat(d=> d === 0 ? "": d)
-      .tickValues(eNums);
+  //add axes 
 
-  d3.select("#year-ticks").append("svg")
-    .attr("width", height)
-    .attr("height", width)
-    .attr("class", "year-ticks")
-    .append("g")
-    .attr("transform", "translate(0,30)")
-    .attr("class", "year-scale")
-    .call(yearsAxis).call(g => {
-      g.select(".domain")
-      .remove();
-      g.selectAll('line').attr("transform", "translate(0, 18)")
-      .attr("class", "year-scale-line")
-      ;}
-    )
+  let eNums = [];
+  for (let i = 2; i <=100; i++){
+    i % 2 === 0 ? eNums.push(i) : null;
+  }
+
+  const yearsScale = d3.scaleLinear().domain([0,50]).range([0,500]);
+  const yearsAxis = d3.axisBottom(yearsScale).ticks(50)
+        .tickFormat(d=> d === 0 ? "": d)
+        .tickValues(eNums);
+
+    d3.select("#year-ticks").append("svg")
+      .attr("width", 1010)
+      .attr("height", 25)
+      .attr("class", "year-ticks")
+      .append("g")
+      .attr("class", "year-scale")
+      .call(yearsAxis).call(g => {
+        g.select(".domain")
+        .remove();
+        g.selectAll('line').attr("transform", "translate(0, 18)")
+        .attr("class", "year-scale-line")
+        ;}
+      );
+
+  let eNums2 = [];
+  for (let i = 2; i <= 52; i++) {
+    i % 2 === 0 ? eNums2.push(i) : null;
+  }
+  const weeksTicks = d3.select("#week-ticks")
+    .append("svg")
+    .attr("height", 500)
+    .attr("width", 30);
+
+  const weekScale = d3.scaleLinear()
+    .domain([0, 52])
+    .range([0, 500]);
+
+  const weeksAxis = d3.axisLeft()
+    .scale(weekScale);
+
+  weeksTicks.append("g")
+    .attr("transform", "translate(25, 10)")
+    .call(weeksAxis)
+    .call(g=>{
+      g.select(".domain").remove();
+      g.select('.tick').select('text').html() === "0" ? g.select('.tick').remove(): null ;
+    });
+
 }
 
 
