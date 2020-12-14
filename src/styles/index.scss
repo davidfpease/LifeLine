@@ -24,6 +24,11 @@ body {
   stroke: black;
 }
 
+.pre-sample {
+  fill:lightyellow;
+  stroke: black;
+}
+
 .post {
   fill: rgb(238, 131, 140);
   stroke: black;
@@ -36,16 +41,36 @@ body {
   animation-duration: 1s;
   animation-iteration-count: infinite;
 }
+.yahtzee-sample {
+  fill: red;
+  stroke: black;
+  animation-name: youDieHere;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+
 
 .lived.pre {
   fill:lightyellow;
 }
 
-rect:hover {
+g rect:hover {
   width: 10px;
   z-index: 40;
   height: 10px;
   transform: translate(-2px, -2px);
+}
+
+.sample-week-icons{
+  display: flex;
+  align-items: center;
+  width: 750px;
+  justify-content: space-evenly;
+
+  p {
+    font-size: 9px;
+  }
 }
 
 .current-week {
@@ -160,10 +185,27 @@ rect:hover {
   border-radius: 3px;
 }
 
+.country-list-container {
+  width: 290px;
+  display: flex;
+
+  p {
+    margin:0;
+  }
+}
+
 .weeks-lived-container {
   width: 175px;
 }
 
 .weeks-remaining-container {
   width: 210px;
+}
+
+.info-container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }

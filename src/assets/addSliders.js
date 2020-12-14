@@ -1,4 +1,4 @@
-import { calculateExpectancy } from '../scripts/calculateExpectancy.js';
+//import { calculateExpectancy } from '../scripts/calculateExpectancy.js';
 
 
 export const addSliders = ()=>{

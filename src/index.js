@@ -86,6 +86,18 @@ function drawGraph(){
       .style("stroke-width", .5)
       .attr("class", function(d){return d <= lifeExpectancy ? "pre" : "post"});
 
+  // const rect = d3.select(".sample-current-week").append('rect')
+  //   .attr("width", 200)
+  //   .attr("height", 200);
+
+  //   rect.append("rect")
+  //   .attr("x", 10)
+  //   .attr("y", 10)
+  //   .attr("width", 50)
+  //   .attr("height", 100);
+  //   //.style("stroke-width", .7)
+  //   //.style("fill", "black");
+
 
 
   //add axes 
@@ -169,10 +181,11 @@ const calculateExpectancy = () => {
   weeksRemaining.innerHTML = remaining;
 
 
-  d3.selectAll('rect')
+  d3.selectAll('g rect')
     .attr('class', (d,i)=>{
-      // debugger;
+      
       let className = [];
+
       if (d === currentWeek){
         className.push('current-week'); 
       };
