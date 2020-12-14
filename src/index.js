@@ -13,7 +13,6 @@ const weekHover = document.getElementById("week-hover");
 document.getElementById("country-list").addEventListener('change', ()=>calculateExpectancy());
 document.querySelectorAll('rect').forEach(r => {
   r.addEventListener('mouseover', (e)=>{
-    //console.log(e.currentTarget.id);
     weekHover.innerHTML = e.currentTarget.id;
     
   });

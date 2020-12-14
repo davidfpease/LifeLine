@@ -4,7 +4,7 @@
 export const addSliders = ()=>{
   const currentYear = new Date().getFullYear();
   const years = d3.range(0, currentYear - 1960 + 1).map(d => new Date(1960 + d, 0, 1));
-  // debugger;
+  
   //year slider
   const yearSlider = d3.sliderLeft()
     .min(d3.min(years))
