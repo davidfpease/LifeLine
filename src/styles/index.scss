@@ -88,6 +88,82 @@ rect:hover {
 
 #week-ticks {
   position: absolute;
-  left: 426px;
+  left: -22px;
   top: 72px;
+}
+
+.sliders {
+  display: flex;
+  justify-content: center;
+  min-width: 1375px;;
+}
+
+#day-slider{
+  margin-right: 32px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  width: 363px;
+  position: relative;
+  left: -322px;
+}
+
+.selections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 45px;
+  width: 363px;
+  position: relative;
+  left: 330px;
+  top: -270px;
+}
+
+.selections p {
+    margin: 0;
+  }
+
+.selections-sub{
+  display: flex;
+  font-size: 9;
+  justify-content: space-evenly;
+  width: 375px;
+}
+
+.your-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.weeks-counts {
+  display: flex;  
+  width: 600px;
+  justify-content: space-evenly;
+}
+
+.date-display {
+  display: flex;
+  width: 200px;
+}
+
+.country-list {
+  margin-right: 26px;
+  width: 139px;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  border: gray solid 1px;
+  border-radius: 3px;
+}
+
+.weeks-lived-container {
+  width: 175px;
+}
+
+.weeks-remaining-container {
+  width: 210px;
 }

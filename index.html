@@ -14,31 +14,21 @@
 </head>
 
 <body>
-  <div class="weeks-lived-container">
-    <p id="weeks-lived"></p>
-  </div>
-  <div class="weeks-remaining-container">
-    <p id="weeks-remaining"></p>
-  </div>
-  <div class="country-list-container">
-    <select id="country-list" class="country-list" ></select>
-  </div>
-  <div class="date-display">
-    <div class="year-display-container">
-      <p id="year-display"></p>
-    </div>
-    <div class="month-display-container">
-      <p id="month-display"></p>
-    </div>
-    <div class="day-display-container">
-      <p id="day-display"></p>
-    </div>
-  </div>
-  <p>Select Your Birth Year, Month and Day:</p>
+  
   <div class="sliders">
-    <div id="year-slider"></div>
-    <div id="month-slider"></div>
-    <div id="day-slider"></div>
+    <div class="slider-container">
+      <div class="selections">
+        <p>Select Your Birth...</p>
+          <div class="selections-sub">
+            <p>Year</p> 
+            <p>Month</p>
+            <p>Day</p>
+          </div>
+      </div>
+      <div id="year-slider"></div>
+      <div id="month-slider"></div>
+      <div id="day-slider"></div>
+    </div>
     <div  class="life-chart-container">
       <div class="week-hover-container">
         <p>Week: <span id="week-hover"></span></p>
@@ -48,6 +38,31 @@
       <p class="weeks">Week</p>
       <div id="week-ticks"></div>
       <div id="life-chart"></div>
+    </div>
+  </div>
+  <div class="your-data">
+  
+    <div class="country-list-container">
+      <select id="country-list" class="country-list"></select>
+    </div>
+    <div class="date-display">
+      <div class="month-display-container">
+        <p>Birthday: &nbsp;<span id="month-display"></span>&nbsp;</p>
+      </div>
+      <div class="day-display-container">
+        <p><span id="day-display"></span>, &nbsp;</p>
+      </div>
+      <div class="year-display-container">
+        <p><span id="year-display"></span> </p>
+      </div>
+    </div>
+    <div class="weeks-counts">
+      <div class="weeks-lived-container">
+        <p>Weeks Lived: <span id="weeks-lived"></span></p>
+      </div>
+      <div class="weeks-remaining-container">
+        <p>Weeks Remaining: <span id="weeks-remaining"></span></p>
+      </div>
     </div>
   </div>
   <script src="./dist/main.js"></script>

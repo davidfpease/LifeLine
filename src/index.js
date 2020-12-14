@@ -165,8 +165,8 @@ const calculateExpectancy = () => {
   const currentWeek = Math.floor(((today-bday)/(1000*60*60*24*365))*52.14);
   let lived = (currentWeek - 1).toLocaleString('en', { useGrouping: true });
   let remaining = (lifeExpectancy - currentWeek).toLocaleString('en', { useGrouping: true })
-  weeksLived.innerHTML = `Weeks Lived: ${lived}`;
-  weeksRemaining.innerHTML = `Weeks Remaining: ${remaining}`;
+  weeksLived.innerHTML = lived;
+  weeksRemaining.innerHTML = remaining;
 
 
   d3.selectAll('rect')
