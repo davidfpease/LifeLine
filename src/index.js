@@ -21,7 +21,7 @@ document.querySelectorAll('rect').forEach(r => {
 //source https://data.worldbank.org/indicator/SP.DYN.LE00.IN
 //life expectancy at birth, by country
 let dataObj = {};
-d3.csv("./src/assets/API_SP.DYN.LE00.IN_DS2_en_csv_v2_1740384.csv").then(data => {
+d3.csv("./dist/API_SP.DYN.LE00.IN_DS2_en_csv_v2_1740384.csv").then(data => {
   data.map(d=>{
       dataObj[d['Country Name']] = dataRow(d);
   });
