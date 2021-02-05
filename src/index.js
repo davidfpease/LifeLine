@@ -16,6 +16,7 @@ const weekHover = document.getElementById("week-hover");
 document.getElementById("country-list").addEventListener('change', ()=>calculateExpectancy());
 document.getElementById("wait-but-why").addEventListener('click', () => newTab("https://waitbutwhy.com/2014/05/life-weeks.html"));
 document.getElementById("world-bank").addEventListener('click', () => newTab("https://data.worldbank.org/indicator/SP.DYN.LE00.IN"));
+document.getElementById("david-pease").addEventListener('click', () => newTab("http://davidpease.me"));
 
 
 //source https://data.worldbank.org/indicator/SP.DYN.LE00.IN
@@ -209,6 +210,6 @@ observer.observe(document.getElementById("day-display"), config);
 document.querySelectorAll('rect').forEach(r => {
   r.addEventListener('mouseover', (e) => {
     weekHover.innerHTML = calcDate(e.currentTarget.id);
-    debugger;
+    
   });
 })

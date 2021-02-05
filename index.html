@@ -14,89 +14,104 @@
 </head>
 
 <body>
-  <div class="info-container">
-    <h1>Your Life in Weeks</h1>
-    <h3>Enter your birthday and country to view your life in the chart.</h3>  
-    <p>Inspired by: &nbsp;<div class="link" id="wait-but-why">Wait But Why?</div></p>
-    <p>Life expectancy data derived from <div class="link" id="world-bank">World Bank</div></p>
-    <div class="sample-week-icons">
-      <p>Already lived: &nbsp;
-        <svg width="6" height="6">
-          <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="lived pre" style="stroke-width: 0.5;"></rect>
-        </svg>
-      </p>
-      <p>Current Week: &nbsp;
-        <svg width="6" height="6">
-          <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="current-week pre" style="stroke-width: 0.5;"></rect>
-        </svg>
-      </p>
-      <p>Future Weeks: &nbsp;
-        <svg width="6" height="6">
-          <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="pre" style="stroke-width: 0.5;"></rect>
-        </svg>
-      </p>
-      <p>Life Expectancy Week: &nbsp;
-        <svg width="6" height="6">
-          <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="yahtzee" style="stroke-width: 0.5;"></rect>
-        </svg>
-      </p>
-      <p>Post Expectancy Weeks: &nbsp;
-        <svg width="6" height="6">
-          <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="post" style="stroke-width: 0.5;"></rect>
-        </svg>
-      </p>
+  <div class="main">
+    <div class="info-container">
+      <h1>Your Life in Weeks</h1>
+      <h3 class="subtitle">Enter your birthday and country to view your life expectancy in the chart.  Each square represents one week.  There are 5,200 squares total representing a 100 year lifespan.</h3>  
+      <div class="inspired-by">
+        <p>Inspired by: &nbsp;<div class="link" id="wait-but-why">Wait But Why?</div></p>
+        <p>Life expectancy data derived from: <div class="link" id="world-bank">World Bank</div></p>
+      </div>
     </div>
-  </div>
-  <div class="sliders">
-    <div class="slider-container">
-      <div class="selections">
-        <p>Select Your Birth...</p>
-          <div class="selections-sub">
-            <p>Year</p> 
-            <p>Month</p>
-            <p>Day</p>
+    <div class="sliders">
+      <div class="slider-container">
+              
+        <div class="sub-slider">
+          <div class="selections">
+            <p>Select Your Birth...</p>
+              
           </div>
+          <p class="slider-label" >Year</p>
+          <div id="year-slider"></div>
+          <p class="slider-label" >Month</p>
+          <div id="month-slider"></div>
+          <p class="slider-label" >Day</p>
+          <div id="day-slider"></div>
+          <div class="date-display">
+            <div class="month-display-container">
+              <p>Birthday: &nbsp;<span id="month-display"></span>&nbsp;</p>
+            </div>
+            <div class="day-display-container">
+              <p><span id="day-display"></span>, &nbsp;</p>
+            </div>
+            <div class="year-display-container">
+              <p><span id="year-display"></span> </p>
+            </div>
+          </div>
+            <div class="country-list-container">
+              <p>Country: &nbsp;</p>
+              <select id="country-list" class="country-list"></select>
+            </div>
+        </div>
+        
+        <div  class="life-chart-container">
+          <div class="your-data">
+            <div class="weeks-counts">
+              <div class="weeks-lived-container">
+                <p>Weeks Lived: <span id="weeks-lived"></span></p>
+              </div>
+              <div class="weeks-remaining-container">
+                <p>Weeks Remaining: <span id="weeks-remaining"></span></p>
+              </div>
+            </div>
+            <div class="week-hover-container">
+              <p class="week-beginning">Selected Week: <span id="week-hover"></span></p>
+            </div>
+          </div>
+          <p class="years">Years</p>
+          <div class="placeholder">
+            <div id="year-ticks"></div>
+            <div class="chart-horizontal">
+              <p class="weeks">Week</p>
+              <div id="week-ticks"></div>
+              <div id="life-chart"></div>
+            </div>
+          </div>
+          <div class="sample-week-icons">
+            <p>Already lived: &nbsp;
+              <svg width="6" height="6">
+                <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="lived pre" style="stroke-width: 0.5;"></rect>
+              </svg>
+            </p>
+            <p>Current Week: &nbsp;
+              <svg width="6" height="6">
+                <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="current-week pre" style="stroke-width: 0.5;"></rect>
+              </svg>
+            </p>
+            <p>Future Weeks: &nbsp;
+              <svg width="6" height="6">
+                <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="pre" style="stroke-width: 0.5;"></rect>
+              </svg>
+            </p>
+            <p>Life Expectancy Week: &nbsp;
+              <svg width="6" height="6">
+                <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="yahtzee" style="stroke-width: 0.5;"></rect>
+              </svg>
+            </p>
+            <p>Post Expectancy Weeks: &nbsp;
+              <svg width="6" height="6">
+                <rect rx="1" ry="1" x="0" y="0" width="6" height="6" class="post" style="stroke-width: 0.5;"></rect>
+              </svg>
+            </p>
+          </div>
+        </div>
+        </div>     
       </div>
-      <div id="year-slider"></div>
-      <div id="month-slider"></div>
-      <div id="day-slider"></div>
-    </div>
-    <div  class="life-chart-container">
-      <div class="week-hover-container">
-        <p class="week-beginning">Week beginning: <span id="week-hover"></span></p>
+      <div class="spacer"></div>
+      <div class="contact">
+        <h3>Created by: <div class="link" id="david-pease">David Pease</div></h3>
       </div>
-      <p class="years">Years</p>
-      <div id="year-ticks"></div>
-      <p class="weeks">Week</p>
-      <div id="week-ticks"></div>
-      <div id="life-chart"></div>
-    </div>
-  </div>
-  <div class="your-data">
-  
-    <div class="country-list-container">
-      <p>Country: &nbsp;</p>
-      <select id="country-list" class="country-list"></select>
-    </div>
-    <div class="date-display">
-      <div class="month-display-container">
-        <p>Birthday: &nbsp;<span id="month-display"></span>&nbsp;</p>
-      </div>
-      <div class="day-display-container">
-        <p><span id="day-display"></span>, &nbsp;</p>
-      </div>
-      <div class="year-display-container">
-        <p><span id="year-display"></span> </p>
-      </div>
-    </div>
-    <div class="weeks-counts">
-      <div class="weeks-lived-container">
-        <p>Weeks Lived: <span id="weeks-lived"></span></p>
-      </div>
-      <div class="weeks-remaining-container">
-        <p>Weeks Remaining: <span id="weeks-remaining"></span></p>
-      </div>
-    </div>
+
   </div>
   <script src="./dist/main.js"></script>
 </body>

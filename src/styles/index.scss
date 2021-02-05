@@ -10,8 +10,22 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+}
+
+h1, h3, p {
+  margin: 2px 0px 2px 0px;
 }
 
 .axis text,
@@ -80,16 +94,41 @@ g rect:hover {
   animation-iteration-count: infinite;
 }
 
-.year-ticks {
-  position: relative;
+div#year-ticks {
+    position: relative;
+    left: 51px;
 }
 
 .life-chart-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: #d9d9ff;
+    border-radius: 5px;
+}
+.chart-horizontal {
   display: flex;
-  position: relative;
   align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+    margin: 10px 0 10px;
+    width: 76vw;
+    text-align: center;
+}
+
+.inspired-by {
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    min-width: 400px;
+    width: 400px;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .years {
@@ -97,54 +136,53 @@ g rect:hover {
   font-size: 9;
 }
 
-.week-hover-container{
-  width: 100px;
-}
-
 .weeks {
-  position: relative;
   font-size: 9;
   transform: rotate(-90deg);
-  top: 250;
-  height: 0;
-  left: -540px;
-  margin: 0;
 }
 
-#week-ticks {
-  position: absolute;
-  left: -22px;
-  top: 72px;
+div#week-ticks {
+    height: 502px;
+    position: relative;
+    top: -14px;
 }
 
 .sliders {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  min-width: 1375px;;
 }
 
-#day-slider{
-  margin-right: 32px;
-}
 
 .slider-container {
-  display: flex;
-  align-items: center;
-  margin-top: 50px;
-  width: 363px;
-  position: relative;
-  left: -322px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.slider-label {
+  margin: 0px;
+}
+.sub-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #8f8f9626;
+    padding: 26px 26px 26px 26px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    margin-bottom: 100px;
 }
 
 .selections {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 45px;
-  width: 363px;
-  position: relative;
-  left: 330px;
-  top: -270px;
+
+}
+
+p.week-beginning {
+    min-width: 286px;
 }
 
 .selections p {
@@ -163,6 +201,7 @@ g rect:hover {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 20px;
 }
 
 .weeks-counts {
@@ -177,7 +216,6 @@ g rect:hover {
 }
 
 .country-list {
-  margin-right: 26px;
   width: 139px;
   font-size: 16px;
   font-family: 'Montserrat';
@@ -186,8 +224,11 @@ g rect:hover {
 }
 
 .country-list-container {
-  width: 290px;
-  display: flex;
+    width: 290px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 
   p {
     margin:0;
@@ -208,6 +249,7 @@ g rect:hover {
   align-content: center;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .link:hover {
@@ -223,7 +265,8 @@ span#week-hover {
     padding-left: 5px;
 }
 
-.week-beginning {
-  width: 296px;
-}
 
+
+.spacer {
+  height: 30vh;
+}
