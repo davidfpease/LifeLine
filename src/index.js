@@ -1,5 +1,5 @@
 import "./styles/index.scss";
-import { dataRow } from './assets/dataHelper.js';
+import { dataRow, calcDate, monthsArray } from './assets/dataHelper.js';
 import { addSliders } from './assets/addSliders.js';
 
 let selectedCountry;
@@ -8,15 +8,14 @@ let lifeExpectancy = 2743;
 drawGraph();
 addSliders();
 
+
+
 const weekHover = document.getElementById("week-hover");
 
+
 document.getElementById("country-list").addEventListener('change', ()=>calculateExpectancy());
-document.querySelectorAll('rect').forEach(r => {
-  r.addEventListener('mouseover', (e)=>{
-    weekHover.innerHTML = e.currentTarget.id;
-    
-  });
-})
+document.getElementById("wait-but-why").addEventListener('click', () => newTab("https://waitbutwhy.com/2014/05/life-weeks.html"));
+
 
 //source https://data.worldbank.org/indicator/SP.DYN.LE00.IN
 //life expectancy at birth, by country
@@ -43,7 +42,11 @@ d3.csv("./dist/API_SP.DYN.LE00.IN_DS2_en_csv_v2_1740384.csv").then(data => {
       
   countryList.select(d=>{
   });  
-});
+}).then(()=>calculateExpectancy());
+
+function newTab(tab){
+  window.open(tab, "_blank")
+}
 
 
 
@@ -84,22 +87,6 @@ function drawGraph(){
       .attr("height", 6)
       .style("stroke-width", .5)
       .attr("class", function(d){return d <= lifeExpectancy ? "pre" : "post"});
-
-  // const rect = d3.select(".sample-current-week").append('rect')
-  //   .attr("width", 200)
-  //   .attr("height", 200);
-
-  //   rect.append("rect")
-  //   .attr("x", 10)
-  //   .attr("y", 10)
-  //   .attr("width", 50)
-  //   .attr("height", 100);
-  //   //.style("stroke-width", .7)
-  //   //.style("fill", "black");
-
-
-
-  //add axes 
 
   let eNums = [];
   for (let i = 2; i <=100; i++){
@@ -155,6 +142,7 @@ function drawGraph(){
 
 
 const calculateExpectancy = () => {
+  
   const birthYear = document.getElementById("year-display").innerHTML;
   const birthMonth = document.getElementById("month-display").innerHTML;
   const birthDay = document.getElementById("day-display").innerHTML;
@@ -216,3 +204,10 @@ const observer = new MutationObserver(()=>calculateExpectancy());
 observer.observe(document.getElementById("year-display"), config);
 observer.observe(document.getElementById("month-display"), config);
 observer.observe(document.getElementById("day-display"), config);
+
+document.querySelectorAll('rect').forEach(r => {
+  r.addEventListener('mouseover', (e) => {
+    weekHover.innerHTML = calcDate(e.currentTarget.id);
+    debugger;
+  });
+})

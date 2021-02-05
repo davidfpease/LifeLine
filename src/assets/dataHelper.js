@@ -1,3 +1,6 @@
+export const monthsArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
 export const dataRow = d => {
   
   return {
@@ -65,3 +68,21 @@ export const dataRow = d => {
     2020: +d['2020'],
   }
 };
+
+export const calcDate = (id)=>{
+
+
+
+  const birthYear = document.getElementById("year-display").innerHTML;
+  const birthMonth = document.getElementById("month-display").innerHTML;
+  const birthDay = document.getElementById("day-display").innerHTML;
+  const bday = new Date(+birthYear, monthsArray.indexOf(birthMonth), +birthDay);
+  const weekHover = document.getElementById("week-hover");
+
+  let week = bday;
+  week.setDate(bday.getDate() + id * 7);
+  return week.toDateString();
+
+
+  
+}

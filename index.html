@@ -17,7 +17,7 @@
   <div class="info-container">
     <h1>Your Life in Weeks</h1>
     <h3>Enter your birthday and country to view your life in the chart.</h3>  
-    <p>Inspired by: &nbsp;<a href="https://waitbutwhy.com/2014/05/life-weeks.html">Wait But Why?</a></p>
+    <p>Inspired by: &nbsp;<div id="wait-but-why" onclick="newTab()">Wait But Why?</div></p>
     <p>Life expectancy data derived from <a href="https://data.worldbank.org/indicator/SP.DYN.LE00.IN">World Bank</a></p>
     <div class="sample-week-icons">
       <p>Already lived: &nbsp;
@@ -63,7 +63,7 @@
     </div>
     <div  class="life-chart-container">
       <div class="week-hover-container">
-        <p>Week: <span id="week-hover"></span></p>
+        <p class="week-beginning">Week beginning: <span id="week-hover"></span></p>
       </div>
       <p class="years">Years</p>
       <div id="year-ticks"></div>
