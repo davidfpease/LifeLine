@@ -15,6 +15,7 @@ const weekHover = document.getElementById("week-hover");
 
 document.getElementById("country-list").addEventListener('change', ()=>calculateExpectancy());
 document.getElementById("wait-but-why").addEventListener('click', () => newTab("https://waitbutwhy.com/2014/05/life-weeks.html"));
+document.getElementById("world-bank").addEventListener('click', () => newTab("https://data.worldbank.org/indicator/SP.DYN.LE00.IN"));
 
 
 //source https://data.worldbank.org/indicator/SP.DYN.LE00.IN
