@@ -7,5 +7,6 @@
 This page is built with vanilla Javascript, WebPack and [D3js](https://d3js.org/).  I used John Walley's [simple sliders](https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518) for the birthday input sliders.  
 
 
-#LifeLine
-<img src="https://media.giphy.com/media/kGwRj3vGBYLp2CCTu1/giphy.gif" width="300">
+# LifeLine
+
+<img src="https://media.giphy.com/media/kGwRj3vGBYLp2CCTu1/giphy.gif" width="600">
